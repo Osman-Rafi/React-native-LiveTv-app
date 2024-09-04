@@ -1,22 +1,26 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   FlatList,
   StyleSheet,
   TVEventHandler,
   useTVEventHandler,
+  Pressable,
+  Text,
 } from 'react-native';
 
-import {ChannelContext} from '../contexts/ChannelContext';
 import {CHANNELS} from '../data/channels';
 import NavigationItem from './NavigationItem';
 
 const ChannelNavigation = () => {
-  const {activeChannel, setActiveChannel} = useContext(ChannelContext);
   const [focusedIndex, setFocusedIndex] = useState(0);
 
   const myTVEventHandler = evt => {
-    console.log(evt.eventType);
+    if (evt.eventType === 'left') {
+      // if (buttonRef.current) {
+      //   buttonRef.current.setNativeProps({hasTVPreferredFocus: true});
+      // }
+    }
   };
 
   useTVEventHandler(myTVEventHandler);
@@ -46,7 +50,6 @@ const ChannelNavigation = () => {
             image={item.image}
             focusedIndex={focusedIndex}
             setFocusedIndex={setFocusedIndex}
-            setVideoId={setActiveChannel}
           />
         )}
         keyExtractor={item => item.title}

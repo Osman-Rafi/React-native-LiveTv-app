@@ -1,18 +1,30 @@
-import React from 'react';
+import React, {useEffect, useContext, useRef} from 'react';
 import {View, TouchableOpacity, Image, StyleSheet, Text} from 'react-native';
 
 import {CHANNELS} from '../data/channels';
+import {ChannelContext} from '../contexts/ChannelContext';
 
 export default function NavigationItem(props) {
-  const {title, image, index, focusedIndex, setFocusedIndex, setVideoId} =
-    props;
+  const itemRefs = useRef([]);
+  const {title, image, index, focusedIndex, setFocusedIndex} = props;
+  const {setActiveChannel} = useContext(ChannelContext);
+
+  useEffect(() => {
+    setFocusedIndex(0);
+    setActiveChannel(CHANNELS[0].id);
+    if (index === 0) {
+      itemRefs.current[index].setNativeProps({hasTVPreferredFocus: true});
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
     <TouchableOpacity
+      ref={ref => (itemRefs.current[index] = ref)}
       style={styles.item}
       onFocus={() => {
         setFocusedIndex(index);
-        setVideoId(CHANNELS[index].id);
+        setActiveChannel(CHANNELS[index].id);
       }}
       activeOpacity={1}>
       <View style={styles.content}>
