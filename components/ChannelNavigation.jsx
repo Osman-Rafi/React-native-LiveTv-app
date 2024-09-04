@@ -1,13 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  TVEventHandler,
-  useTVEventHandler,
-  Pressable,
-  Text,
-} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 
 import {CHANNELS} from '../data/channels';
 import NavigationItem from './NavigationItem';
@@ -15,30 +7,8 @@ import NavigationItem from './NavigationItem';
 const ChannelNavigation = () => {
   const [focusedIndex, setFocusedIndex] = useState(0);
 
-  const myTVEventHandler = evt => {
-    if (evt.eventType === 'left') {
-      // if (buttonRef.current) {
-      //   buttonRef.current.setNativeProps({hasTVPreferredFocus: true});
-      // }
-    }
-  };
-
-  useTVEventHandler(myTVEventHandler);
-
   return (
-    <>
-      <View>
-        {/* <YoutubePlayer
-          height={300}
-          play={true}
-          videoId={videoId}
-          allowWebViewZoom={true}
-          webViewProps={{
-            javaScriptEnabled: true, // Ensure JS is enabled
-            domStorageEnabled: true, // Enable DOM storage
-          }}
-        /> */}
-      </View>
+    <View style={styles.container}>
       <FlatList
         horizontal
         data={CHANNELS}
@@ -54,13 +24,16 @@ const ChannelNavigation = () => {
         )}
         keyExtractor={item => item.title}
       />
-    </>
+    </View>
   );
 };
 
 export default ChannelNavigation;
 
 const styles = StyleSheet.create({
+  container: {
+    height: '50',
+  },
   wrapper: {
     margin: 10,
     borderRadius: 10,

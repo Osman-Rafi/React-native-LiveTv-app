@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 50,
+    height: 50,
     borderRadius: 10,
   },
   placeholderImage: {
-    width: 150,
-    height: 150,
+    width: 50,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#d3d3d3',
