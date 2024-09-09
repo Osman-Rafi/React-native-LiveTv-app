@@ -1,9 +1,9 @@
-export const CHANNELS = [
+export const channels = [
   {
     title: 'N Tv',
     image:
       'https://www.ntvbd.com/sites/all/themes/sloth/images/ntv-facebook.jpg',
-    id: 'WweCajqoO_w',
+    id: 'LAuWjNg5snc',
   },
   {
     title: 'Channel i',
@@ -15,7 +15,7 @@ export const CHANNELS = [
     title: 'Jamuna Tv',
     image:
       'https://play-lh.googleusercontent.com/HB_K5ZUcWFfYBcST4buqJ_Oq3g16g4F8jbWLV3jrytGLcWks9ld0R_8ccdxDS_9gqPyP',
-    id: 'O8_PMpUYx14',
+    id: '8ZvYN3UI2Nk',
   },
   // {title: 'Channel 4', image: null},
   // {title: 'Channel 5', image: null},

@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 
-import {CHANNELS} from '../data/channels';
+// import {channels} from '../data/channels';
 import NavigationItem from './NavigationItem';
+import {ChannelContext} from '../contexts/ChannelContext';
 
 const ChannelNavigation = () => {
+  const {channels} = useContext(ChannelContext);
   const [focusedIndex, setFocusedIndex] = useState(0);
 
   return (
     <View style={styles.container}>
       <FlatList
         horizontal
-        data={CHANNELS}
+        data={channels}
         style={styles.wrapper}
         renderItem={({item, index}) => (
           <NavigationItem

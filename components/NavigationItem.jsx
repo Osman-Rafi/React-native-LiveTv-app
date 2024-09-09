@@ -1,22 +1,51 @@
 import React, {useEffect, useContext, useRef} from 'react';
-import {View, TouchableOpacity, Image, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Text,
+  TVEventHandler,
+  useTVEventHandler,
+} from 'react-native';
 
-import {CHANNELS} from '../data/channels';
+// import {channels} from '../data/channels';
 import {ChannelContext} from '../contexts/ChannelContext';
 
 export default function NavigationItem(props) {
   const itemRefs = useRef([]);
   const {title, image, index, focusedIndex, setFocusedIndex} = props;
-  const {setActiveChannel} = useContext(ChannelContext);
+  const {activeChannel, setActiveChannel, isFullscreenEnable, channels} =
+    useContext(ChannelContext);
 
   useEffect(() => {
     setFocusedIndex(0);
-    setActiveChannel(CHANNELS[0].id);
+    setActiveChannel(channels[0].id);
     if (index === 0) {
       itemRefs.current[index].setNativeProps({hasTVPreferredFocus: true});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
+
+  const myTVEventHandler = evt => {
+    // console.log(evt.eventType);
+    if (isFullscreenEnable) {
+      const activeIndex = channels.findIndex(
+        channel => channel.id === activeChannel,
+      );
+      if (evt.eventType === 'up') {
+        if (channels[activeIndex + 1]) {
+          setActiveChannel(channels[activeIndex + 1].id);
+        }
+      } else if (evt.eventType === 'down') {
+        if (channels[activeIndex - 1]) {
+          setActiveChannel(channels[activeIndex - 1].id);
+        }
+      }
+    }
+  };
+
+  useTVEventHandler(myTVEventHandler);
 
   return (
     <TouchableOpacity
@@ -24,7 +53,7 @@ export default function NavigationItem(props) {
       style={styles.item}
       onFocus={() => {
         setFocusedIndex(index);
-        setActiveChannel(CHANNELS[index].id);
+        setActiveChannel(channels[index].id);
       }}
       activeOpacity={1}>
       <View style={styles.content}>
