@@ -1,18 +1,16 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import MediaView from './components/MediaView';
 
+import MainContent from './components/MainContent';
 import {ChannelProvider} from './contexts/ChannelContext';
-import ChannelNavigation from './components/ChannelNavigation';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView style={styles.container}>
-      <ChannelProvider>
-        <MediaView />
-        <ChannelNavigation />
-      </ChannelProvider>
-    </SafeAreaView>
+    <ChannelProvider>
+      <SafeAreaView style={styles.container}>
+        <MainContent />
+      </SafeAreaView>
+    </ChannelProvider>
   );
 }
 
