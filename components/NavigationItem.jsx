@@ -11,13 +11,15 @@ import {
 
 // import {channels} from '../data/channels';
 import {ChannelContext} from '../contexts/ChannelContext';
-import {showToast} from '../utils/Notify';
+import {useNotify} from '../utils/useNotify';
 
 export default function NavigationItem(props) {
   const itemRefs = useRef([]);
   const {title, image, index, focusedIndex, setFocusedIndex} = props;
   const {activeChannel, setActiveChannel, isFullscreenEnable, channels} =
     useContext(ChannelContext);
+
+  const notify = useNotify();
 
   useEffect(() => {
     setFocusedIndex(0);
@@ -39,19 +41,19 @@ export default function NavigationItem(props) {
         if (channels[activeIndex + 1]) {
           setActiveChannel(channels[activeIndex + 1].id);
           setTimeout(() => {
-            showToast(`Playing ${channels[activeIndex + 1].title}`);
+            notify();
           }, 500);
         } else {
           setActiveChannel(channels[0].id);
           setTimeout(() => {
-            showToast(`Playing ${channels[0].title}`);
+            notify();
           }, 500);
         }
       } else if (evt.eventType === 'down') {
         if (channels[activeIndex - 1]) {
           setActiveChannel(channels[activeIndex - 1].id);
           setTimeout(() => {
-            showToast(`Playing ${channels[activeIndex].title}`);
+            notify();
           }, 500);
         }
       }
