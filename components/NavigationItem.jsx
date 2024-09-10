@@ -11,6 +11,7 @@ import {
 
 // import {channels} from '../data/channels';
 import {ChannelContext} from '../contexts/ChannelContext';
+import { showToast } from '../utils/Notify';
 
 export default function NavigationItem(props) {
   const itemRefs = useRef([]);
@@ -36,10 +37,12 @@ export default function NavigationItem(props) {
       if (evt.eventType === 'up') {
         if (channels[activeIndex + 1]) {
           setActiveChannel(channels[activeIndex + 1].id);
+          showToast(`Playing ${channels[activeIndex].title}`)
         }
       } else if (evt.eventType === 'down') {
         if (channels[activeIndex - 1]) {
           setActiveChannel(channels[activeIndex - 1].id);
+          showToast(`Playing ${channels[activeIndex].title}`)
         }
       }
     }
