@@ -7,7 +7,7 @@ import {ChannelContext} from '../contexts/ChannelContext';
 
 export default function MainContent() {
   const [loading, setLoading] = useState(false);
-  const {setChannels} = useContext(ChannelContext);
+  const {setChannels, setIsFullscreenEnable} = useContext(ChannelContext);
 
   const fetchChannels = useCallback(() => {
     // console.log('Fetching from JSONBin...');
@@ -23,6 +23,11 @@ export default function MainContent() {
       .then(data => {
         // console.log(data.record);
         setChannels(data.record);
+      })
+      .then(() => {
+        setTimeout(() => {
+          setIsFullscreenEnable(true);
+        }, 10000);
       })
       .catch(error => {
         console.error('Error fetching JSONBin data:', error);
