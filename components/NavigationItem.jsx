@@ -38,15 +38,21 @@ export default function NavigationItem(props) {
       if (evt.eventType === 'up') {
         if (channels[activeIndex + 1]) {
           setActiveChannel(channels[activeIndex + 1].id);
-          showToast(`Playing ${channels[activeIndex + 1].title}`);
+          setTimeout(() => {
+            showToast(`Playing ${channels[activeIndex + 1].title}`);
+          }, 500);
         } else {
           setActiveChannel(channels[0].id);
-          showToast(`Playing ${channels[0].title}`);
+          setTimeout(() => {
+            showToast(`Playing ${channels[0].title}`);
+          }, 500);
         }
       } else if (evt.eventType === 'down') {
         if (channels[activeIndex - 1]) {
           setActiveChannel(channels[activeIndex - 1].id);
-          showToast(`Playing ${channels[activeIndex].title}`);
+          setTimeout(() => {
+            showToast(`Playing ${channels[activeIndex].title}`);
+          }, 500);
         }
       }
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import {ToastAndroid} from 'react-native';
 
 export const showToast = message => {
-  ToastAndroid.show(message, ToastAndroid.LONG);
+  ToastAndroid.show(message, 500);
 };
 
 // const showToastWithGravity = () => {
