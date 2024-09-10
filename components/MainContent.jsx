@@ -24,8 +24,8 @@ export default function MainContent() {
       .then(data => {
         // console.log(data.record);
         setIsFullscreenEnable(false);
-        setActiveChannel(channels[0].id);
         setChannels(data.record);
+        // setActiveChannel(channels[0].id);
       })
       .then(() => {
         setTimeout(() => {
