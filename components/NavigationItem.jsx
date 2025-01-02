@@ -8,10 +8,11 @@ import {
   TVEventHandler,
   useTVEventHandler,
 } from 'react-native';
+import {useToast} from 'react-native-toast-notifications';
 
 // import {channels} from '../data/channels';
 import {ChannelContext} from '../contexts/ChannelContext';
-import {useNotify} from '../utils/useNotify';
+// import {useNotify} from '../utils/useNotify';
 
 export default function NavigationItem(props) {
   const itemRefs = useRef([]);
@@ -19,7 +20,7 @@ export default function NavigationItem(props) {
   const {activeChannel, setActiveChannel, isFullscreenEnable, channels} =
     useContext(ChannelContext);
 
-  const notify = useNotify();
+  const toast = useToast();
 
   useEffect(() => {
     setFocusedIndex(0);
@@ -30,6 +31,21 @@ export default function NavigationItem(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const notify = () => {
+    const activeChannelName = channels.find(
+      channel => channel.id === activeChannel,
+    ).title;
+    toast.hideAll().then(() => {
+      toast.show(`Playing ${activeChannelName}.............`, {
+        type: 'success ',
+        placement: 'bottom',
+        duration: 500,
+        offset: 30,
+        animationType: 'zoom-in',
+      });
+    });
+  };
+
   const myTVEventHandler = evt => {
     // console.log(evt.eventType);
     if (isFullscreenEnable) {
@@ -39,22 +55,16 @@ export default function NavigationItem(props) {
 
       if (evt.eventType === 'up') {
         if (channels[activeIndex + 1]) {
-          setActiveChannel(channels[activeIndex + 1].id);
-          setTimeout(() => {
-            notify();
-          }, 500);
+          // setActiveChannel(channels[activeIndex + 1].id);
+          notify();
         } else {
           setActiveChannel(channels[0].id);
-          setTimeout(() => {
-            notify();
-          }, 500);
+          notify();
         }
       } else if (evt.eventType === 'down') {
         if (channels[activeIndex - 1]) {
           setActiveChannel(channels[activeIndex - 1].id);
-          setTimeout(() => {
-            notify();
-          }, 500);
+          notify();
         }
       }
     }

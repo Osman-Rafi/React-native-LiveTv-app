@@ -4,6 +4,7 @@ import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import MediaView from './MediaView';
 import ChannelNavigation from './ChannelNavigation';
 import {ChannelContext} from '../contexts/ChannelContext';
+import VideoPlayer from '../components/VideoPlayer';
 
 export default function MainContent() {
   const [loading, setLoading] = useState(false);
@@ -52,6 +53,7 @@ export default function MainContent() {
 
   return (
     <>
+      <VideoPlayer />
       <MediaView />
       <ChannelNavigation />
     </>

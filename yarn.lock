@@ -2939,6 +2939,8 @@ __metadata:
     prettier: 2.8.8
     react: 18.3.1
     react-native: "npm:react-native-tvos@~0.75.2-0"
+    react-native-toast-notifications: ^3.4.0
+    react-native-video: ^6.6.2
     react-native-webview: ^13.12.1
     react-native-youtube-iframe: ^2.3.0
     react-test-renderer: 18.3.1
@@ -7870,6 +7872,26 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-native-toast-notifications@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "react-native-toast-notifications@npm:3.4.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 734a54111e3657859d3cca9505a197bc6eb486e473e655d8aa087157de8f5e8b819083963f28e5e9155110be9a17774296bbfd721749f670c5f4e093557bd88f
+  languageName: node
+  linkType: hard
+
+"react-native-video@npm:^6.6.2":
+  version: 6.6.2
+  resolution: "react-native-video@npm:6.6.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: caa15860536203428dfd4715dcec484d6f07523d161ba7602c30fee49647adca9b5f86dbbf2eccb78336b2b81262ff606de18d0130903fdcce6f187972664510
   languageName: node
   linkType: hard
 
